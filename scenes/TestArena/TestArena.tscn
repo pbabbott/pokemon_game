@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf31mj0hryauf"]
+
+[ext_resource type="Script" path="res://scenes/TestArena/Pikachu.cs" id="1_1rq0i"]
+[ext_resource type="PackedScene" uid="uid://cqk6x76h4vhim" path="res://scenes/PokemonAnimatedSprite2D/PokemonAnimatedSprite2D.tscn" id="2_80lrq"]
+[ext_resource type="Script" path="res://scenes/TestArena/Rattata.cs" id="3_4xybn"]
+[ext_resource type="Script" path="res://scenes/TestArena/Bulbasaur.cs" id="4_ci3th"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d00n6"]
+resource_local_to_scene = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpk27"]
+resource_local_to_scene = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iykie"]
+resource_local_to_scene = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hc7g3"]
+radius = 8.0
+
+[node name="TestArena" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-2, 3)
+zoom = Vector2(2, 2)
+
+[node name="Pikachu" type="Node2D" parent="."]
+position = Vector2(36, 26)
+script = ExtResource("1_1rq0i")
+
+[node name="PikachuAnimation" parent="Pikachu" instance=ExtResource("2_80lrq")]
+sprite_frames = SubResource("SpriteFrames_d00n6")
+
+[node name="Rattata" type="Node2D" parent="."]
+position = Vector2(-50, 27)
+script = ExtResource("3_4xybn")
+
+[node name="RattataAnimation" parent="Rattata" instance=ExtResource("2_80lrq")]
+sprite_frames = SubResource("SpriteFrames_bpk27")
+
+[node name="Bulbasaur" type="CharacterBody2D" parent="."]
+position = Vector2(-5, 28)
+script = ExtResource("4_ci3th")
+
+[node name="BulbasaurAnimation" parent="Bulbasaur" instance=ExtResource("2_80lrq")]
+sprite_frames = SubResource("SpriteFrames_iykie")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bulbasaur"]
+shape = SubResource("CircleShape2D_hc7g3")
