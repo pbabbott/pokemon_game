@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Pokemon.Movement;
 
 public partial class Opponent : CharacterBody2D
 {

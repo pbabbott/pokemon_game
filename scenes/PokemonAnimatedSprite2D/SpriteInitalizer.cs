@@ -3,6 +3,7 @@
 using System;
 using System.Linq;
 using Godot;
+using Pokemon.SpriteDirection;
 
 
 public class SpriteInitializer

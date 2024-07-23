@@ -7,6 +7,9 @@ public class AnimationType : IEquatable<AnimationType>
     public string Value { get; private set; }
 
     public static AnimationType Walk { get { return new AnimationType("Walk"); } }
+    public static AnimationType Attack { get { return new AnimationType("Attack"); } }
+
+
     public override bool Equals(object obj)
     {
         if (obj == null || GetType() != obj.GetType())

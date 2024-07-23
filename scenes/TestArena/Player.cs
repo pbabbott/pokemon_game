@@ -1,6 +1,9 @@
 using Godot;
 using Godot.NativeInterop;
 using System;
+using Pokemon.Movement;
+using Pokemon.SpriteDirection;
+using Pokemon.UserInput;
 
 public partial class Player : CharacterBody2D
 {
@@ -28,6 +31,8 @@ public partial class Player : CharacterBody2D
 	{
 		_animatedSprite = GetNode<PokemonAnimatedSprite2D>("./PlayerAnimation");
 		_animatedSprite.InitializeSprite("0007-Squirtle", AnimationType.Walk);
+		_animatedSprite.InitializeSprite("0007-Squirtle", AnimationType.Attack);
+
 		_animatedSprite.Play("Walk_Down");
 		_animatedSprite.SetFrameAndProgress(0, 0);
 		_animatedSprite.Stop();

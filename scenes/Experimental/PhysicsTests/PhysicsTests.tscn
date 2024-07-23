@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://brxsmnypfgkkd"]
 
-[ext_resource type="Script" path="res://scenes/PhysicsTests/CharacterBodyTest/PlayerCharacter.cs" id="1_tsnbd"]
-[ext_resource type="Script" path="res://scenes/PhysicsTests/CharacterBodyTest/TestOpponent.cs" id="2_ydil6"]
+[ext_resource type="Script" path="res://scenes/Experimental/PhysicsTests/PlayerCharacter.cs" id="1_x0gis"]
+[ext_resource type="Script" path="res://scenes/Experimental/PhysicsTests/TestOpponent.cs" id="2_yqqap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_725iv"]
 
@@ -15,8 +15,7 @@ position = Vector2(247, 73)
 [node name="Player" type="CharacterBody2D" parent="."]
 motion_mode = 1
 up_direction = Vector2(0, 1)
-script = ExtResource("1_tsnbd")
-PushForce = 800.0
+script = ExtResource("1_x0gis")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_725iv")
@@ -34,7 +33,7 @@ shape = SubResource("RectangleShape2D_tieds")
 [node name="Opponent" type="CharacterBody2D" parent="."]
 position = Vector2(65, 58)
 motion_mode = 1
-script = ExtResource("2_ydil6")
+script = ExtResource("2_yqqap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent"]
 shape = SubResource("RectangleShape2D_wegot")

@@ -1,4 +1,5 @@
 using System;
+using Pokemon.SpriteDirection;
 
 public class AnimationNameFactory
 {
