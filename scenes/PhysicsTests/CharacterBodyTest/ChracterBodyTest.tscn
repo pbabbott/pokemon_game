@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://brxsmnypfgkkd"]
+
+[ext_resource type="Script" path="res://scenes/PhysicsTests/CharacterBodyTest/PlayerCharacter.cs" id="1_tsnbd"]
+[ext_resource type="Script" path="res://scenes/PhysicsTests/CharacterBodyTest/TestOpponent.cs" id="2_ydil6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_725iv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tieds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wegot"]
+
+[node name="CharacterBodyTest" type="Node2D"]
+position = Vector2(247, 73)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+motion_mode = 1
+up_direction = Vector2(0, 1)
+script = ExtResource("1_tsnbd")
+PushForce = 800.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_725iv")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(-70, 60)
+mass = 5.38
+gravity_scale = 0.0
+can_sleep = false
+linear_damp = 12.803
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_tieds")
+
+[node name="Opponent" type="CharacterBody2D" parent="."]
+position = Vector2(65, 58)
+motion_mode = 1
+script = ExtResource("2_ydil6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent"]
+shape = SubResource("RectangleShape2D_wegot")
+debug_color = Color(0.734503, 0.381779, 0.712002, 0.42)

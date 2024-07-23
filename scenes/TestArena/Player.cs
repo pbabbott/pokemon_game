@@ -4,20 +4,24 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	[Export]
+	public bool DebugVelocity { get; set; }
+
 	private readonly AnimationNameFactory _animationNameFactory = new AnimationNameFactory();
 	private readonly SpriteDirectionController _spriteDirectionController = new SpriteDirectionController();
+	private readonly UserInputReader _userInputReader = new UserInputReader();
+	
 	private readonly CharacterMovementController _movementController;
-    private readonly CharacterCollisionController _collsionController;
-    private PokemonAnimatedSprite2D _animatedSprite;
+	private readonly CharacterCollisionController _collsionController;
+
+	private PokemonAnimatedSprite2D _animatedSprite;
 	private SpriteDirection Direction => _spriteDirectionController.Direction;
 
-	
 	public Player()
 	{
 		_movementController = new CharacterMovementController(this);
 		_collsionController = new CharacterCollisionController(this);
 	}
-
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -31,37 +35,46 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		var d = (float)delta;
 
-		PlayerMovement(delta);
-		QueueRedraw();
-		_collsionController.HandleCollisions();
-		MoveAndSlide();
+		_userInputReader.DetectInput();
+		PlayerMovement(d);
+		CheckCollisions(d);
+
+		if (DebugVelocity)
+		{
+			QueueRedraw();
+		}
 	}
 
 	public override void _Draw()
 	{
-		DrawString(ThemeDB.FallbackFont, Vector2.Zero, $"Velocity: {Velocity}");
+		if (DebugVelocity)
+		{
+			DrawString(ThemeDB.FallbackFont, Vector2.Zero, $"Velocity: {Velocity.Length()}");
+		}
 	}
 
-	
-
-	public void PlayerMovement(double delta)
+	private void CheckCollisions(float delta) 
 	{
-		var downKey = Input.IsActionPressed("ui_down");
-		var rightKey = Input.IsActionPressed("ui_right");
-		var leftKey = Input.IsActionPressed("ui_left");
-		var upKey = Input.IsActionPressed("ui_up");
+		_collsionController.HandleCollisions();
+	}
 
-		var isKeyDown = downKey || rightKey || leftKey || upKey;
-		_spriteDirectionController.SetSpriteDirection(downKey, rightKey, leftKey, upKey);
+	private void PlayerMovement(float delta)
+	{
+		_spriteDirectionController.SetSpriteDirection(_userInputReader);
 
 		var isMoving = Velocity != Vector2.Zero;
-		MovementAnimation(isMoving);
+		var isKeyDown = _userInputReader.IsKeyDown;
+		MovementAnimation(isMoving || isKeyDown);
 
-		_movementController.ApplyUserInput(isKeyDown);
-		_movementController.ApplyFriction();
+		var normalizedInputVector = _userInputReader.NormalizedInputVector;
+		_movementController.ApplyUserInput(normalizedInputVector, isKeyDown, delta);
+		_movementController.ApplyFriction(delta);
 		_movementController.ApplyCleanStop();
+		MoveAndSlide();
 		
+
 	}
 
 	private void MovementAnimation(bool isMoving)
@@ -71,21 +84,16 @@ public partial class Player : CharacterBody2D
 		var activeAnimation = _animatedSprite.Animation.ToString();
 		var isPlaying = _animatedSprite.IsPlaying();
 
-		if (activeAnimation != animationName || !isPlaying) {
-			_animatedSprite.Play(animationName);	
+		if (activeAnimation != animationName || !isPlaying)
+		{
+			_animatedSprite.Play(animationName);
 		}
 
-		if(!isMoving) {
+		if (!isMoving)
+		{
 			_animatedSprite.Stop();
 			_animatedSprite.SetFrameAndProgress(0, 0);
 		}
 	}
-
-    // public void ApplyPush(CharacterBody2D pusher)
-	// {
-
-	// 	_movementController.ApplyPush(pusher);
-	// 	this.MoveAndSlide();
-	// }
 
 }

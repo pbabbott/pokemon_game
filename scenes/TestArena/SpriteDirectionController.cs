@@ -1,8 +1,17 @@
 public class SpriteDirectionController 
 {
-    public SpriteDirection Direction { get; private set;}
-    public void SetSpriteDirection(bool downKey, bool rightKey, bool leftKey, bool upKey)
+	public SpriteDirectionController()
 	{
+	}
+
+    public SpriteDirection Direction { get; private set;}
+    public void SetSpriteDirection(UserInputReader userInputReader)
+	{
+		var downKey = userInputReader.DownKey;
+		var leftKey = userInputReader.LeftKey;
+		var rightKey = userInputReader.RightKey;
+		var upKey = userInputReader.UpKey;
+
 		if (downKey)
 		{
 			if (rightKey)

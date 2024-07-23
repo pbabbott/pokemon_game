@@ -1,56 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf31mj0hryauf"]
+[gd_scene load_steps=8 format=3 uid="uid://bf31mj0hryauf"]
 
 [ext_resource type="PackedScene" uid="uid://cqk6x76h4vhim" path="res://scenes/PokemonAnimatedSprite2D/PokemonAnimatedSprite2D.tscn" id="2_80lrq"]
-[ext_resource type="Script" path="res://scenes/TestArena/Opponent.cs" id="3_qsagf"]
+[ext_resource type="Script" path="res://scenes/TestArena/Opponent.cs" id="3_shdmk"]
 [ext_resource type="Script" path="res://scenes/TestArena/Player.cs" id="4_ci3th"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iykie"]
 resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwnq1"]
-size = Vector2(17, 17)
+size = Vector2(14, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ggkhq"]
 resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ml6n8"]
-size = Vector2(17, 17)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yaxbj"]
-size = Vector2(403, 20)
+size = Vector2(14, 14)
 
 [node name="TestArena" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(-66, -279)
+position = Vector2(-42, -99)
+motion_mode = 1
 script = ExtResource("4_ci3th")
 
 [node name="PlayerAnimation" parent="Player" instance=ExtResource("2_80lrq")]
 sprite_frames = SubResource("SpriteFrames_iykie")
 
-[node name="PlayerCollider" type="CollisionShape2D" parent="Player"]
+[node name="CharacterCollider" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_dwnq1")
 
 [node name="Opponent" type="CharacterBody2D" parent="."]
-position = Vector2(-66, -240)
-safe_margin = 0.1
-script = ExtResource("3_qsagf")
-PushForce = 15.0
+position = Vector2(-42, -60)
+motion_mode = 1
+script = ExtResource("3_shdmk")
 
 [node name="OpponentAnimation" parent="Opponent" instance=ExtResource("2_80lrq")]
 sprite_frames = SubResource("SpriteFrames_ggkhq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent"]
+[node name="CharacterCollider" type="CollisionShape2D" parent="Opponent"]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_ml6n8")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(-89, 128)
-safe_margin = 0.1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(27, 2)
-shape = SubResource("RectangleShape2D_yaxbj")
