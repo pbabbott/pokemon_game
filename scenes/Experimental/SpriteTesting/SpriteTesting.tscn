@@ -1,13 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://tgxg4niks5qj"]
+[gd_scene load_steps=19 format=3 uid="uid://tgxg4niks5qj"]
 
 [ext_resource type="Texture2D" uid="uid://bfkq3npplskl4" path="res://Game Boy Advance - Pokemon FireRed LeafGreen - Tileset 2.png" id="1_sk5vw"]
 [ext_resource type="Texture2D" uid="uid://dk6tgbm68ktup" path="res://pokemon_data/0025-Pikachu/Walk-Anim.png" id="2_wbi83"]
-[ext_resource type="Script" path="res://scenes/experimental/Pikachu2.cs" id="3_0hira"]
-[ext_resource type="Script" path="res://scenes/experimental/Pikachu3.cs" id="4_punje"]
-[ext_resource type="Script" path="res://scenes/experimental/Pikachu4.cs" id="5_c35fc"]
-[ext_resource type="Script" path="res://scenes/experimental/Pikachu5.cs" id="6_4axqe"]
-[ext_resource type="Script" path="res://scenes/experimental/Pikachu6.cs" id="7_x1ym8"]
-[ext_resource type="Script" path="res://scenes/experimental/Pikachu7.cs" id="8_n2qbo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e27gp"]
 texture = ExtResource("1_sk5vw")
@@ -143,16 +137,15 @@ vframes = 8
 
 [node name="Pikachu2" type="Node2D" parent="."]
 position = Vector2(73, 24)
-script = ExtResource("3_0hira")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pikachu2"]
 position = Vector2(1, 7)
 sprite_frames = SubResource("SpriteFrames_qy5s6")
 animation = &"walk_down"
+frame_progress = 0.755514
 
 [node name="Pikachu 3" type="Node2D" parent="."]
 position = Vector2(115, 27)
-script = ExtResource("4_punje")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pikachu 3"]
 position = Vector2(8, 6)
@@ -167,13 +160,11 @@ libraries = {
 
 [node name="Pikachu 4" type="Node2D" parent="."]
 position = Vector2(168, 32)
-script = ExtResource("5_c35fc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pikachu 4"]
 
 [node name="Pikachu5" type="Node2D" parent="."]
 position = Vector2(222, 20)
-script = ExtResource("6_4axqe")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pikachu5"]
 position = Vector2(-7, 14)
@@ -184,7 +175,6 @@ hframes = 4
 
 [node name="Pikachu6" type="Node2D" parent="."]
 position = Vector2(40, 80)
-script = ExtResource("7_x1ym8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pikachu6"]
 
@@ -197,4 +187,3 @@ position = Vector2(92, 81)
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_g8kdg")
 animation = &""
-script = ExtResource("8_n2qbo")

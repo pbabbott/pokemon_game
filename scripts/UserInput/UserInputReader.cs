@@ -9,9 +9,9 @@ namespace Pokemon.UserInput
         public bool LeftKey { get; private set; }
         public bool RightKey { get; private set; }
 
-        public bool PrimaryAttack { get; private set; }
+        public bool PrimaryAttackKey { get; private set; }
 
-        public bool IsKeyDown
+        public bool IsMovementKeyDown
         {
             get
             {
@@ -28,7 +28,7 @@ namespace Pokemon.UserInput
             LeftKey = Input.IsActionPressed("ui_left");
             UpKey = Input.IsActionPressed("ui_up");
 
-            PrimaryAttack = Input.IsActionJustPressed("ui_accept");
+            PrimaryAttackKey = Input.IsActionJustPressed("ui_accept");
 
             NormalizedInputVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down").Normalized();
         }

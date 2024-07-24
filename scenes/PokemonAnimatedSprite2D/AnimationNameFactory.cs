@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Pokemon.SpriteDirection;
 
 public class AnimationNameFactory
@@ -25,9 +27,15 @@ public class AnimationNameFactory
 
         throw new NotImplementedException("Missing sprite direction naming convention");
     }
+
     public string GetAnimationName(AnimationType animationType, SpriteDirection direction)
     {
-        if (animationType.Equals(AnimationType.Walk)) {
+        var directionalAnimationNames = new List<AnimationType>(){
+            AnimationType.Walk,
+            AnimationType.Attack
+        };
+
+        if (directionalAnimationNames.Any(x => x.Equals(animationType))) {
             var dirAsString = GetDirectionAsString(direction);
             return $"{animationType}_{dirAsString}";
         }

@@ -21,7 +21,7 @@ namespace Experimental.StateMachineTest
         public override void Update(float delta)
         {
             userInputReader.DetectInput();
-            if (userInputReader.IsKeyDown)
+            if (userInputReader.IsMovementKeyDown)
             {
                 StateMachine.TransitionTo("Walk");
             }

@@ -4,7 +4,6 @@ public class CharacterCollisionController
 {
 
 	public float CharacterPushForce = 50f;
-	
 
     private CharacterBody2D _Character { get; set; }
 

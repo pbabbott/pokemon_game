@@ -34,7 +34,6 @@ public partial class Opponent : CharacterBody2D
 	}
 
 
-
 	// [Export]
 	// public bool DebugVelocity { get; set; }
 

@@ -9,11 +9,12 @@ namespace Experimental.StateMachineTest
     {
         private UserInputReader userInputReader = new UserInputReader();
 
+
         public override void PhysicsUpdate(float delta)
         {
             userInputReader.DetectInput();
             var normalizedInputVector = userInputReader.NormalizedInputVector;
-            var isKeyDown = userInputReader.IsKeyDown;
+            var isKeyDown = userInputReader.IsMovementKeyDown;
 
             var movementController = new CharacterMovementController(Character);
             movementController.ApplyUserInput(normalizedInputVector, isKeyDown, delta);
